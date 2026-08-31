@@ -1,0 +1,139 @@
+openapi: 3.1.0
+info:
+  title: SITUS Connect
+  version: "0.1.0"
+  description: |
+    Prise de droits spatiaux. Pas d'hébergeur SITUS.
+    Le nœud qui implémente ceci reste chez l'entreprise.
+servers:
+  - url: http://127.0.0.1:8765/v0
+    description: Nœud local QUANTUM
+paths:
+  /autoriser:
+    post:
+      summary: Ce usage est-il permis pour cette empreinte
+      operationId: autoriser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AutoriserIn"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AutoriserOut"
+  /verifier:
+    post:
+      summary: La carte scelle encore ce scan
+      operationId: verifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VerifierIn"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VerifierOut"
+  /licence/{empreinte}:
+    get:
+      summary: Fiche publique — usages et révocation
+      operationId: licence
+      parameters:
+        - name: empreinte
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: "^[0-9a-f]{64}$"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LicenceOut"
+        "404":
+          description: Inconnue
+components:
+  schemas:
+    AutoriserIn:
+      type: object
+      required: [empreinte, usage]
+      additionalProperties: false
+      properties:
+        empreinte:
+          type: string
+          pattern: "^[0-9a-f]{64}$"
+        usage:
+          type: string
+          enum: [capture, train, sim, deploy]
+        message:
+          type: string
+          description: Optionnel. Si présent, le filtre SITUS peut renvoyer urgent.
+    AutoriserOut:
+      type: object
+      required: [decision, usage, empreinte]
+      additionalProperties: false
+      properties:
+        decision:
+          type: string
+          enum: [allow, deny, urgent]
+        usage:
+          type: string
+        empreinte:
+          type: string
+        flags:
+          type: array
+          items:
+            type: string
+        revoque:
+          type: boolean
+    VerifierIn:
+      type: object
+      required: [empreinte, scan_sha256]
+      additionalProperties: false
+      properties:
+        empreinte:
+          type: string
+          pattern: "^[0-9a-f]{64}$"
+        scan_sha256:
+          type: string
+          pattern: "^[0-9a-f]{64}$"
+        inventaire_sha256:
+          type: string
+          pattern: "^[0-9a-f]{64}$"
+    VerifierOut:
+      type: object
+      required: [ok]
+      additionalProperties: false
+      properties:
+        ok:
+          type: boolean
+        raison:
+          type: string
+    LicenceOut:
+      type: object
+      required: [empreinte, usages, revoque]
+      additionalProperties: false
+      properties:
+        empreinte:
+          type: string
+        usages:
+          type: array
+          items:
+            type: string
+            enum: [capture, train, sim, deploy]
+        revoque:
+          type: boolean
+        revoque_at:
+          type: string
+          format: date-time
+          nullable: true
+        inventaire_sha256:
+          type: string
