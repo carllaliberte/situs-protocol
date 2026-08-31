@@ -1,0 +1,47 @@
+{
+  "fictif": true,
+  "lieu_public": "Pharmacie démo — aucun civique",
+  "usages_licence": ["capture", "sim"],
+  "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "scan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "inventaire_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "tours": [
+    {
+      "route": "POST /v0/autoriser",
+      "in": { "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "usage": "sim" },
+      "out": { "decision": "allow", "usage": "sim", "flags": [], "revoque": false }
+    },
+    {
+      "route": "POST /v0/autoriser",
+      "in": { "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "usage": "train" },
+      "out": { "decision": "deny", "usage": "train", "flags": ["hors-licence"], "revoque": false }
+    },
+    {
+      "route": "POST /v0/autoriser",
+      "in": {
+        "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "usage": "sim",
+        "message": "j'ai mal à la poitrine je prends quoi"
+      },
+      "out": { "decision": "urgent", "usage": "sim", "flags": ["urgent"], "revoque": false }
+    },
+    {
+      "route": "POST /v0/verifier",
+      "in": {
+        "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "scan_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "out": { "ok": true, "raison": "sceau intact — démo, pas une carte UNFORGE" }
+    },
+    {
+      "route": "GET /v0/licence/{empreinte}",
+      "out": {
+        "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "usages": ["capture", "sim"],
+        "revoque": false,
+        "inventaire_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    }
+  ],
+  "interdit_dans_git": [".spz", "owner.txt", "adresse", "dialogue client réel"]
+}
