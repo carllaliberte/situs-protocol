@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/carllaliberte/situs-protocol/schema/lieu.v0.json",
+  "title": "SITUS lieu v0",
+  "type": "object",
+  "required": ["lieu_id", "usages", "juridiction", "langue"],
+  "properties": {
+    "lieu_id": { "type": "string" },
+    "nom_public": { "type": "string" },
+    "juridiction": { "type": "string", "examples": ["QC"] },
+    "langue": { "type": "string", "examples": ["fr-CA"] },
+    "usages": {
+      "type": "array",
+      "items": { "enum": ["capture", "train", "sim", "deploy"] }
+    },
+    "interdits": { "type": "array", "items": { "type": "string" } },
+    "scan_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "prix_usdc": { "type": "number", "minimum": 0 },
+    "revocable": { "type": "boolean", "default": true }
+  }
+}

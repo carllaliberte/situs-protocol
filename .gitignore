@@ -1,0 +1,25 @@
+# Scans et binaires 3D — jamais dans le repo public
+*.spz
+*.ply
+*.splat
+*.glb
+*.gltf
+*.obj
+*.fbx
+*.usdz
+scans/
+preuves/
+
+# Données personnelles / lieux réels
+lieux-reels/
+*.jpg
+*.jpeg
+*.png
+*.heic
+*.mov
+*.mp4
+consentement.*
+
+# OS
+.DS_Store
+Thumbs.db
