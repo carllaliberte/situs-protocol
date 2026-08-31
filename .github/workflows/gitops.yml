@@ -1,0 +1,53 @@
+name: gitops
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "connect/**"
+      - "schema/**"
+      - "examples/**"
+      - ".github/workflows/**"
+      - "GITOPS.md"
+      - "CONNECT.md"
+      - "OLLAMA.md"
+  pull_request:
+    paths:
+      - "connect/**"
+      - "schema/**"
+      - "examples/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+concurrency:
+  group: gitops-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  reconcilier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: état désiré présent
+        run: |
+          set -e
+          test -f connect/openapi.v0.yaml
+          test -f schema/lieu.v0.json || test -f connect/openapi.v0.yaml
+          test -f CONNECT.md
+      - name: JSON des exemples parse
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          for p in pathlib.Path("examples").rglob("*.json"):
+              json.loads(p.read_text(encoding="utf-8"))
+              print("ok", p)
+          PY
+      - name: aucun apply cluster
+        run: |
+          echo "GitOps SITUS = valider le proto. Pas de kubectl. SHA=${{ github.sha }}"
