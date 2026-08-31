@@ -1,0 +1,9 @@
+{
+  "format": "situs-annuaire.v0",
+  "nom_public": "Pharmacie fictive Plateau",
+  "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "usages": ["capture", "sim"],
+  "revoque": false,
+  "langue": "fr-CA",
+  "connect": "http://127.0.0.1:8765/v0"
+}

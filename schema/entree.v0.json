@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/carllaliberte/situs-protocol/schema/entree.v0.json",
+  "title": "Entrée d'annuaire SITUS v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "empreinte", "usages", "revoque", "langue"],
+  "properties": {
+    "format": { "const": "situs-annuaire.v0" },
+    "nom_public": { "type": "string" },
+    "empreinte": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "usages": {
+      "type": "array",
+      "items": { "enum": ["capture", "train", "sim", "deploy"] }
+    },
+    "revoque": { "type": "boolean" },
+    "langue": { "type": "string" },
+    "connect": {
+      "type": "string",
+      "description": "Base URL chez l'owner. Jamais un cloud SITUS."
+    }
+  }
+}
