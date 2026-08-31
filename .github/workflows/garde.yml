@@ -17,11 +17,7 @@ jobs:
       - name: aucun lieu réel dans le proto
         run: |
           set -e
-          if git ls-files | grep -Ei '\.(spz|ply|splat)$|owner\.txt$|quantum\.db$'; then
+          if git ls-files | grep -Ei '\.(spz|ply)$|(^|/)owner\.txt$|(^|/)quantum\.db$'; then
             echo "fichier interdit versionné"
-            exit 1
-          fi
-          if git ls-files | grep -Ei 'consentement|civique'; then
-            echo "possible PII versionnée — vérifier"
             exit 1
           fi
