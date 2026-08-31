@@ -1,0 +1,27 @@
+name: garde
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: aucun lieu réel dans le proto
+        run: |
+          set -e
+          if git ls-files | grep -Ei '\.(spz|ply|splat)$|owner\.txt$|quantum\.db$'; then
+            echo "fichier interdit versionné"
+            exit 1
+          fi
+          if git ls-files | grep -Ei 'consentement|civique'; then
+            echo "possible PII versionnée — vérifier"
+            exit 1
+          fi
