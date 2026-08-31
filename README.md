@@ -6,7 +6,7 @@ SITUS est un registre de droits spatiaux pour l’IA : un lieu réel n’entre d
 
 Ce dépôt est la version 0. Elle tient dans un téléphone. Zéro token. Zéro serveur payant.
 
-**Open source (MIT).** Le protocole reste public. Voir [OPEN_SOURCE.md](OPEN_SOURCE.md).
+**Open source (MIT).** Le protocole reste public. Voir [OPEN_SOURCE.md](OPEN_SOURCE.md), [COPYRIGHT.md](COPYRIGHT.md) et [SECURITY.md](SECURITY.md).
 
 ## Primitive
 
@@ -68,6 +68,8 @@ sha256sum scan.spz
 
 La chain, plus tard, ne fait qu’ancrer ce dossier. Elle ne le crée pas.
 
-## Licence du dépôt
+## Droits et sécurité
 
-MIT. Les gabarits sont réutilisables. Les lieux réels restent la propriété de leurs owners.
+- Auteur du protocole : Carl Laliberté, © 2026, MIT — [COPYRIGHT.md](COPYRIGHT.md)
+- Les lieux réels et leurs scans restent à leurs owners
+- Signalement privé : [SECURITY.md](SECURITY.md)
