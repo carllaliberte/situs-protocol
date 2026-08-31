@@ -27,6 +27,15 @@ jobs:
           HOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           test -n "$HOOK" || exit 0
-          curl -sS -o /dev/null -w "%{http_code}\n" -H "Content-Type: application/json" \
-            -d "{\"content\":\"SITUS garde éCHEC — ${{ github.repository }} ${{ github.sha }}\"}" \
+          curl -sS -o /dev/null -H "Content-Type: application/json" \
+            -d "{\"content\":\"SITUS garde ÉCHEC — ${{ github.repository }} ${{ github.sha }}\"}" \
+            "$HOOK"
+      - name: Slack si échec
+        if: failure()
+        env:
+          HOOK: ${{ secrets.SLACK_WEBHOOK }}
+        run: |
+          test -n "$HOOK" || exit 0
+          curl -sS -o /dev/null -H "Content-Type: application/json" \
+            -d "{\"text\":\"SITUS garde ÉCHEC — ${{ github.repository }} ${{ github.sha }}\"}" \
             "$HOOK"
