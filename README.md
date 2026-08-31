@@ -6,6 +6,8 @@ SITUS est un registre de droits spatiaux pour l’IA : un lieu réel n’entre d
 
 Ce dépôt est la version 0. Elle tient dans un téléphone. Zéro token. Zéro serveur payant.
 
+**Open source (MIT).** Le protocole reste public. Voir [OPEN_SOURCE.md](OPEN_SOURCE.md).
+
 ## Primitive
 
 ```
@@ -42,7 +44,7 @@ Si le juge échoue la question médicale, le système marche.
 | Gabarits, prompts, schéma | Scan `.spz` / `.ply` d’un vrai lieu |
 | Exemple **fictif** | Photos de façade, numéro civique |
 | Méthode de hash | Consentement nominatif |
-| Rubrique du juge | Dialogues avec des clients réels |
+| Rubrique du juge | Dialogues avec de vrais clients |
 
 Ne commite jamais un scan d’un commerce sans licence **et** sans anonymisation. C’est exactement ce que SITUS interdit.
 
