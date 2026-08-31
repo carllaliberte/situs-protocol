@@ -21,3 +21,12 @@ jobs:
             echo "fichier interdit versionné"
             exit 1
           fi
+      - name: Discord si échec
+        if: failure()
+        env:
+          HOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        run: |
+          test -n "$HOOK" || exit 0
+          curl -sS -o /dev/null -w "%{http_code}\n" -H "Content-Type: application/json" \
+            -d "{\"content\":\"SITUS garde éCHEC — ${{ github.repository }} ${{ github.sha }}\"}" \
+            "$HOOK"
