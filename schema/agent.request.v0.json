@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/carllaliberte/situs-protocol/schema/agent.request.v0.json",
+  "title": "SITUS agent request v0",
+  "type": "object",
+  "required": ["role", "lieu_id", "licence", "inventaire", "message"],
+  "properties": {
+    "role": { "const": "agent" },
+    "lieu_id": { "type": "string" },
+    "licence": {
+      "type": "object",
+      "required": ["usages", "langue"],
+      "properties": {
+        "usages": {
+          "type": "array",
+          "items": { "enum": ["capture", "train", "sim", "deploy"] }
+        },
+        "langue": { "type": "string" },
+        "interdits": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "inventaire": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["sku", "nom", "position"],
+        "properties": {
+          "sku": { "type": "string" },
+          "nom": { "type": "string" },
+          "position": { "type": "string" }
+        }
+      }
+    },
+    "message": { "type": "string" }
+  }
+}

@@ -37,6 +37,12 @@ Quatre usages, séparés :
 
 Si le juge échoue la question médicale, le système marche.
 
+## API
+
+Contrat d’appel (agent + juge, deux conversations) : [`api.md`](api.md).
+
+Pas de serveur SITUS en v0. Tu branches un LLM. Les clés restent hors repo.
+
 ## Ce qui va sur GitHub / ce qui reste privé
 
 | Public (ce repo) | Privé (ton téléphone / Drive) |
