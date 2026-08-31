@@ -34,10 +34,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
         with:
-          python-version: "3.12"
-      - name: état désiré
+          fetch-depth: 1
+      - name: état désiré + JSON
         run: |
           set -e
           test -f connect/openapi.v0.yaml
@@ -45,16 +44,11 @@ jobs:
           test -f schema/quittance.v0.json
           test -f schema/douane.v0.json
           test -f schema/entree.v0.json
-      - name: JSON parse
-        run: |
           python3 - <<'PY'
           import json, pathlib
-          for p in pathlib.Path("examples").rglob("*.json"):
-              json.loads(p.read_text(encoding="utf-8"))
-              print("ok", p)
-          for p in pathlib.Path("schema").rglob("*.json"):
-              json.loads(p.read_text(encoding="utf-8"))
-              print("ok", p)
+          for racine in ("examples", "schema"):
+              for p in pathlib.Path(racine).rglob("*.json"):
+                  json.loads(p.read_text(encoding="utf-8"))
+                  print("ok", p)
           PY
-      - name: aucun apply cluster
-        run: echo "GitOps SITUS = proto. SHA=${{ github.sha }}"
+          echo "GitOps SITUS = proto. SHA=${GITHUB_SHA}"
