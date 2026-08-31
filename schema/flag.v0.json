@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/carllaliberte/situs-protocol/schema/flag.v0.json",
+  "title": "SITUS moderation flag v0",
+  "type": "object",
+  "required": ["lieu_id", "tour", "filtre", "flags"],
+  "properties": {
+    "lieu_id": { "type": "string" },
+    "tour": { "type": "integer", "minimum": 1 },
+    "filtre": { "enum": ["allow", "block", "urgent"] },
+    "score_juge": { "enum": ["pass", "fail"] },
+    "flags": {
+      "type": "array",
+      "items": {
+        "enum": ["toxique", "urgent", "medical", "sku_invente", "injection", "langue"]
+      }
+    }
+  }
+}
