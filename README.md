@@ -24,7 +24,17 @@ Quatre usages, séparés :
 | `sim` | Y faire courir un agent dans le 3D |
 | `deploy` | Y envoyer un robot ou un agent live |
 
-## Monter v0 en 45 minutes
+## v0 au cellulaire — 3 commandes
+
+```bash
+PYTHONPATH=src python3 -m situs_filtre.cli "Quelle est l'heure d'ouverture ?"
+PYTHONPATH=src python3 -m situs_filtre.cli "J'ai mal à la poitrine"
+sha256sum examples/pharmacie-fictive/licence.md
+```
+
+Le juge filtre. La question médicale doit être refusée. Si elle passe, le système est cassé.
+
+## Rituel 45 minutes (en dessous)
 
 1. Copier [`templates/licence.md`](templates/licence.md)
 2. Obtenir le consentement écrit de l’owner (texto suffit)
@@ -35,7 +45,18 @@ Quatre usages, séparés :
 7. Coller le dialogue dans [`templates/juge.md`](templates/juge.md) — **autre conversation**
 8. Ranger le tout comme dans [`examples/pharmacie-fictive/`](examples/pharmacie-fictive/)
 
-Si le juge échoue la question médicale, le système marche.
+## Famille
+
+| Rail | Question |
+|---|---|
+| [FIGURE](https://github.com/carllaliberte/figure-protocol) | qui |
+| [SITUS](https://github.com/carllaliberte/situs-protocol) | où |
+| [UNFORGE](https://github.com/carllaliberte/unforge-check) | quoi |
+| [QUELLE](https://github.com/carllaliberte/quelle) | d'où le bit |
+| [TÉMOIN](https://github.com/carllaliberte/temoin-protocol) | avec quelle force |
+| [HORIZON](https://github.com/carllaliberte/horizon-protocol) | jusqu'à quand le sceau tient |
+
+MIT (protocoles) · Apache-2.0 (œil UNFORGE). QUANTUM signe. Les clés restent hors Git.
 
 ## API
 
@@ -58,10 +79,7 @@ Ne commite jamais un scan d’un commerce sans licence **et** sans anonymisation
 
 Voir [`schema/lieu.v0.json`](schema/lieu.v0.json).
 
-Le hash du scan remplace le fichier 3D dans le registre public :
-
 ```bash
-# sur ordi, ou via une app de hash
 sha256sum scan.spz
 ```
 
@@ -71,6 +89,7 @@ sha256sum scan.spz
 - pas un metaverse
 - pas un token
 - pas un avis juridique
+- pas un réseau quantique simulé
 
 La chain, plus tard, ne fait qu’ancrer ce dossier. Elle ne le crée pas.
 
