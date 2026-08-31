@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/carllaliberte/situs-protocol/schema/douane.v0.json",
+  "title": "Douane SITUS v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "empreinte", "usage", "lab", "jour", "plafond", "consomme"],
+  "properties": {
+    "format": { "const": "situs-douane.v0" },
+    "empreinte": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "usage": { "enum": ["capture", "train", "sim", "deploy"] },
+    "lab": { "type": "string" },
+    "jour": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "plafond": { "type": "integer", "minimum": 0 },
+    "consomme": { "type": "integer", "minimum": 0 }
+  }
+}

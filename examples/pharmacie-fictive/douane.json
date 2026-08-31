@@ -1,0 +1,9 @@
+{
+  "format": "situs-douane.v0",
+  "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "usage": "sim",
+  "lab": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "jour": "2026-08-31",
+  "plafond": 20,
+  "consomme": 1
+}

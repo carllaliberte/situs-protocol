@@ -10,6 +10,9 @@ on:
       - ".github/workflows/**"
       - "GITOPS.md"
       - "CONNECT.md"
+      - "ANNUAIRE.md"
+      - "QUITTANCE.md"
+      - "DOUANE.md"
       - "OLLAMA.md"
   pull_request:
     paths:
@@ -34,20 +37,24 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: état désiré présent
+      - name: état désiré
         run: |
           set -e
           test -f connect/openapi.v0.yaml
-          test -f schema/lieu.v0.json || test -f connect/openapi.v0.yaml
           test -f CONNECT.md
-      - name: JSON des exemples parse
+          test -f schema/quittance.v0.json
+          test -f schema/douane.v0.json
+          test -f schema/entree.v0.json
+      - name: JSON parse
         run: |
           python3 - <<'PY'
           import json, pathlib
           for p in pathlib.Path("examples").rglob("*.json"):
               json.loads(p.read_text(encoding="utf-8"))
               print("ok", p)
+          for p in pathlib.Path("schema").rglob("*.json"):
+              json.loads(p.read_text(encoding="utf-8"))
+              print("ok", p)
           PY
       - name: aucun apply cluster
-        run: |
-          echo "GitOps SITUS = valider le proto. Pas de kubectl. SHA=${{ github.sha }}"
+        run: echo "GitOps SITUS = proto. SHA=${{ github.sha }}"

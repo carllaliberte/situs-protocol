@@ -1,0 +1,12 @@
+{
+  "format": "situs-quittance.v0",
+  "id": "QT-QC-DEMO0001",
+  "empreinte": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "usage": "sim",
+  "lab": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "decision": "allow",
+  "emise_at": "2026-08-31T18:00:00+00:00",
+  "revoque_at": null,
+  "cle_publique": "demo",
+  "signature": "demo"
+}

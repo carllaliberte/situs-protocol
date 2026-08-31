@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/carllaliberte/situs-protocol/schema/quittance.v0.json",
+  "title": "Quittance SITUS v0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["format", "id", "empreinte", "usage", "lab", "decision", "emise_at", "cle_publique", "signature"],
+  "properties": {
+    "format": { "const": "situs-quittance.v0" },
+    "id": { "type": "string" },
+    "empreinte": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "usage": { "enum": ["capture", "train", "sim", "deploy"] },
+    "lab": { "type": "string", "description": "sha256 du nom de lab — pas un email" },
+    "decision": { "enum": ["allow", "urgent"] },
+    "emise_at": { "type": "string" },
+    "revoque_at": { "type": ["string", "null"] },
+    "cle_publique": { "type": "string" },
+    "signature": { "type": "string" }
+  }
+}
