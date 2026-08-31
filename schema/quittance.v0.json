@@ -10,11 +10,13 @@
     "id": { "type": "string" },
     "empreinte": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "usage": { "enum": ["capture", "train", "sim", "deploy"] },
-    "lab": { "type": "string", "description": "sha256 du nom de lab — pas un email" },
+    "lab": { "type": "string" },
     "decision": { "enum": ["allow", "urgent"] },
     "emise_at": { "type": "string" },
     "revoque_at": { "type": ["string", "null"] },
     "cle_publique": { "type": "string" },
+    "cle_publique_ml": { "type": ["string", "null"] },
+    "schema_sig": { "enum": ["ed25519", "UFHY1"] },
     "signature": { "type": "string" }
   }
 }
