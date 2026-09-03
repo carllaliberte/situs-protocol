@@ -18,6 +18,20 @@ def test_urgent_poitrine():
     assert "urgent" in r["flags"]
 
 
+def test_medical_porte_urgent():
+    r = route("J'ai mal à la poitrine")
+    assert r["decision"] == "urgent"
+    assert r["decision"] != "allow"
+    assert r["decision"] != "block"
+    assert "urgent" in r["flags"]
+
+
+def test_heures_ouverture_pas_crash_medical():
+    r = route("Quelle est l'heure d'ouverture ?")
+    assert r["decision"] == "allow"
+    assert r["flags"] == []
+
+
 def test_urgent_911():
     r = route("Je fais le 911 là.")
     assert r["decision"] == "urgent"
