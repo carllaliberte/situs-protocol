@@ -7,6 +7,7 @@ Aucun bot n'est owner. Aucun bot ne scelle un lieu réel. Aucun bot n'ouvre QUAN
 | Workflow | Déclencheur Git |
 |---|---|
 | `garde` | push `main`, PR |
+| `filtre` | push `main`, PR |
 
 ## Grok — quoi sonne où
 
