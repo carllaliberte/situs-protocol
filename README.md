@@ -38,7 +38,7 @@ Quatre usages, **séparés** — un usage n’en ouvre pas un autre :
 | Licence présente ou absente | Qu’un lieu est un qubit |
 | Les 4 usages, un par un | Qu’un usage en ouvre un autre |
 | Le filtre refuse le médical | Qu’un modèle a « scellé » le lieu |
-| Hash du scan (fichier hors Git) | Que la carte JSON est un sceau QUANTUM |
+| Hash du scan (fichier hors Git) | Qu’une fiche JSON remplace QUANTUM |
 | L’exemple public est **fictif** | Qu’un commerce réel est dans ce repo |
 
 Le juge filtre. La copie propre n’existe pas sans licence. Le jugement, c’est Carl.

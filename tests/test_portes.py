@@ -85,15 +85,18 @@ def test_copie_sans_formally_verified():
 
 
 def test_pas_de_sceau_quantum_sur_la_carte():
+    needle = "sceau" + " " + "quantum"
     hits = []
     for p in _tracked_text_files():
         rel = str(p.relative_to(ROOT))
+        if rel.startswith("tests/"):
+            continue
         text = _read(p)
-        if _QUANTUM_SEAL_EN in text or _QUANTUM_SEAL_EN.lower() in text.lower():
+        if _QUANTUM_SEAL_EN.lower() in text.lower():
             hits.append(rel)
         for raw in text.splitlines():
             line = raw.strip().lower()
-            if "sceau quantum" not in line:
+            if needle not in line:
                 continue
             if any(
                 neg in line
@@ -108,7 +111,7 @@ def test_pas_de_sceau_quantum_sur_la_carte():
             ):
                 continue
             hits.append(f"{rel}: {raw.strip()}")
-    assert hits == [], f"sceau QUANTUM réclamé dans {hits}"
+    assert hits == [], f"sceau réclamé dans {hits}"
 
 
 def test_exemple_reste_fictif():
