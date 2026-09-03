@@ -37,7 +37,7 @@ Quatre usages, **séparés** — un usage n’en ouvre pas un autre :
 |---|---|
 | Licence présente ou absente | Qu’un lieu est un qubit |
 | Les 4 usages, un par un | Qu’un usage en ouvre un autre |
-| Le filtre refuse le médical | Qu’un modèle a « scellé » le lieu |
+| Le filtre sort urgent sur le médical | Qu’un modèle a « scellé » le lieu |
 | Hash du scan (fichier hors Git) | Qu’une fiche JSON remplace QUANTUM |
 | L’exemple public est **fictif** | Qu’un commerce réel est dans ce repo |
 
@@ -51,7 +51,7 @@ PYTHONPATH=src python3 -m situs_filtre.cli "J'ai mal à la poitrine"
 sha256sum examples/pharmacie-fictive/licence.md
 ```
 
-La question médicale doit être refusée. Si elle passe, le système est cassé. Une question d’heures d’ouverture n’est pas un crash médical.
+Médical → `urgent`, pas allow. Urgent n’est pas block. Si « J'ai mal à la poitrine » sort allow, le système est cassé. Les heures d’ouverture restent allow.
 
 ## Rituel 45 minutes (en dessous)
 

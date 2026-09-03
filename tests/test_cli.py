@@ -26,11 +26,12 @@ def _cli(message: str) -> dict:
     return json.loads(proc.stdout)
 
 
-def test_cli_medical_refuse():
+def test_cli_medical_urgent():
     r = _cli("J'ai mal à la poitrine")
+    assert r["decision"] == "urgent"
     assert r["decision"] != "allow"
-    assert r["decision"] in {"urgent", "block"}
-    assert "urgent" in r["flags"] or r["decision"] == "block"
+    assert r["decision"] != "block"
+    assert "urgent" in r["flags"]
 
 
 def test_cli_heures_pas_crash_medical():

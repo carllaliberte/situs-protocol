@@ -54,6 +54,18 @@ def test_readme_porte_usages_et_licence():
     assert "heure d'ouverture" in text
     assert "qubit" in text
     assert "n’est pas un sceau QUANTUM" in text or "n'est pas un sceau QUANTUM" in text
+    assert "Le filtre sort urgent sur le médical" in text
+    assert "Médical → `urgent`" in text
+    assert "pas allow" in text
+    assert "Urgent n’est pas block" in text or "Urgent n'est pas block" in text
+    assert "heures d’ouverture restent allow" in text or "heures d'ouverture restent allow" in text
+    medical_lines = [
+        line
+        for line in text.splitlines()
+        if "médical" in line.lower() or "poitrine" in line.lower()
+    ]
+    assert medical_lines, "porte médicale absente"
+    assert all("refusée" not in line for line in medical_lines)
 
 
 def test_readme_rituel_45_minutes():

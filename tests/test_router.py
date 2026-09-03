@@ -18,10 +18,11 @@ def test_urgent_poitrine():
     assert "urgent" in r["flags"]
 
 
-def test_medical_porte_refuse():
+def test_medical_porte_urgent():
     r = route("J'ai mal à la poitrine")
-    assert r["decision"] != "allow"
     assert r["decision"] == "urgent"
+    assert r["decision"] != "allow"
+    assert r["decision"] != "block"
     assert "urgent" in r["flags"]
 
 
