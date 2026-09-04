@@ -45,7 +45,7 @@ Deux lectures en parallèle :
    Sortie : scores haine / sexe / violence / automutilation / harcèlement.
 
 2. **Détecteur d’urgence** — petite liste + jugement faible.  
-   Signaux : poitrine, souffle, 911, inconscient, saignement abondant.  
+   Signaux : mal à la poitrine / chest pain, souffle, 911, inconscient, saignement abondant.  
    Ce n’est **pas** un diagnostic. C’est un drapeau.
 
 Fusion :

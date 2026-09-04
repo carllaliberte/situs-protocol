@@ -3,7 +3,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from situs_filtre.router import route
+from situs_filtre.router import URGENT_PATTERNS, route
 
 
 def test_allow_rayon():
@@ -23,6 +23,22 @@ def test_medical_porte_urgent():
     assert r["decision"] == "urgent"
     assert r["decision"] != "allow"
     assert r["decision"] != "block"
+    assert "urgent" in r["flags"]
+
+
+def test_poitrine_seul_pas_urgent():
+    assert "poitrine" not in URGENT_PATTERNS
+    r = route("poitrine")
+    assert r["decision"] == "allow"
+    assert "urgent" not in r["flags"]
+    produit = route("avez-vous une crème poitrine")
+    assert produit["decision"] == "allow"
+    assert "urgent" not in produit["flags"]
+
+
+def test_chest_pain_urgent():
+    r = route("I have chest pain")
+    assert r["decision"] == "urgent"
     assert "urgent" in r["flags"]
 
 

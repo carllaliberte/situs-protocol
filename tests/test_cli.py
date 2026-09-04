@@ -34,6 +34,12 @@ def test_cli_medical_urgent():
     assert "urgent" in r["flags"]
 
 
+def test_cli_poitrine_seul_pas_urgent():
+    r = _cli("poitrine")
+    assert r["decision"] == "allow"
+    assert "urgent" not in r["flags"]
+
+
 def test_cli_heures_pas_crash_medical():
     r = _cli("Quelle est l'heure d'ouverture ?")
     assert r["decision"] == "allow"

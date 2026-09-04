@@ -23,7 +23,7 @@ Catégories utiles ici : haine, harcèlement, sexuel, violence gratuite, automut
 
 - `allow` — on envoie à l’agent
 - `block` — on n’appelle pas l’agent ; réponse fixe : « Je ne peux pas continuer. »
-- `urgent` — urgence possible (poitrine, souffle, 911) : **allow** + flag `urgent` pour le juge
+- `urgent` — urgence possible (mal à la poitrine, chest pain, souffle, 911) : **allow** + flag `urgent` pour le juge
 
 Le filtre ne connaît pas l’inventaire. Il ne juge pas un conseil médical.
 
